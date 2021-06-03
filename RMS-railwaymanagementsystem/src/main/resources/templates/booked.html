@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Ticket Booked</title>
+<meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <style>
+	 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins',sans-serif;
+}
+body{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+h1{
+	color: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+.container{
+  max-width: 1000px;
+  width: 100%;
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+.container .hed{
+text-align: center;
+}
+.container .title{
+  font-size: 25px;
+  font-weight: 500;
+  text-align: center;
+  position: relative;
+}
+.container .title::before{
+  content: "";
+  position: absolute;
+  left: 265px;
+  bottom: 0;
+  height: 3px;
+  width: 30px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+.container .pass{
+	text-align: center;
+}
+  .content form .user-details{
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+  .user-details::-webkit-scrollbar{
+    width: 5px;
+  }
+  }
+  @media(max-width: 459px){
+  .container .content .category{
+    flex-direction: column;
+  }
+} 
+</style>
+</head>
+<body>
+ 
+<div class="container" th:with = "tickets = ${bookedTicket[0]}">
+    <H1 class="hed"> BOOKED! </H1>
+    <div class="title">Your Ticket has been Confirmed!</div><br>
+    <div class="content">
+      <h3 class="pass"> Journey Details</h3><br>
+	  <table class="table" border="1">
+	  <tbody>
+	  	<tr>
+            <th>PNR Number</th>
+            <td th:text="${tickets.pnrNumber}"></td> 
+        </tr>
+        <tr>
+        	<th>Train Name / Number</th>
+        	<td th:text="${tickets.train.trainName+' / '+tickets.train.trainNumber}"></td>
+        </tr>
+        <tr>
+        	<th>Passenger Name</th>
+        	<td th:text="${tickets.user.userName}"></td>
+        </tr>
+        <tr>
+        	<th>Age / Gender</th>
+        	<td th:text="${tickets.user.userDateOfBirth+' / '+tickets.user.userGender}"></td>
+        </tr>
+        <tr>
+        	<th>Journey Date</th>
+        	<td th:text="${tickets.journeyDate}"></td>
+        </tr>
+        <tr>
+        	<th>Boarding Station / Departure Time</th>
+        	<td th:text="${tickets.train.trainBoardingStation+' / '+tickets.train.trainDepartureTime}"></td>  
+        </tr>
+        <tr>
+        	<th>Deboarding Station / Reach Time</th>
+        	<td th:text="${tickets.train.trainDeboardingStation+' / '+tickets.train.trainArrivalTime}"></td>
+        </tr>
+        <tr>
+        	<th>Coach Number / Seat Number</th>
+        	<td th:text="${tickets.coachNumber+' / '+tickets.seatNumber}"></td>
+        </tr>
+        <tr>
+        	<th>Total Amount Paid</th>
+        	<td th:text="${tickets.ticketFair}"></td>
+        </tr>
+        <tr>
+        	<th>Ticket Booked Date</th>
+        	<td th:text="${tickets.ticketBookedDate}"></td>
+        </tr>
+	  </tbody>              
+</table>
+    </div>
+  </div>
+</body>
+</html>

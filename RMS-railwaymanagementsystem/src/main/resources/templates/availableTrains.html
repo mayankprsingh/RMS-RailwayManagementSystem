@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Railway</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styled-table thead tr {
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    color: #ffffff;
+    text-align: left;
+	width:100%;
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 50px; 
+	text-align: left;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+	text-align: left;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #71b7e6;
+}
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #fff;
+</style>
+<!-- <script type="text/javascript">
+
+function handleClick(evt) {
+  var node = evt.target || evt.srcElement;
+  if (node.name == 'edit') {
+    node.value = "Modify";
+  }
+}
+</script> -->
+ </head>
+ <body>
+ <nav class="navbar bg-success">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Railway</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/rms/logOut"><span class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
+    </ul>
+  </div>
+</nav>
+ <h1 align="center">Available Trains</h1><br>
+ <table class="styled-table" id="table1" border="1">
+    <thead>
+        <tr>
+            <th>Train Number</th>
+            <th>Train Name</th>
+			<th>Boarding Station</th>
+			<th>Deboarding Station</th>
+			<th>Running Date</th>
+			<th>Arrival Time</th>
+			<th>Departure Time</th>
+			<th>Seats Available</th>
+			<th>Ticket Fare</th>
+			<th>Book Tickets</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="trains : ${listTrains}">
+                     
+                    <td th:text="${trains.trainNumber}"></td>
+                    <td th:text="${trains.trainName}"></td>
+                    <td th:text="${trains.trainBoardingStation}"></td>                    
+                    <td th:text="${trains.trainDeboardingStation}"></td>
+                    <td th:text="${trains.trainRunningDate}"></td>
+                    <td th:text="${trains.trainArrivalTime}"></td>
+                    <td th:text="${trains.trainDepartureTime}"></td>
+                    <td th:text="${trains.numberOfSeats}"></td>
+                    <td th:text="${trains.trainFare}"></td>
+                    <td><a th:href="@{/rms/paymentDetails/{id}(id=${trains.trainId})}">Book</a></td>
+                </tr>
+    </tbody>
+</table>
+</body>
+</html>
